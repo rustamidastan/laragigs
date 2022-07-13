@@ -12,7 +12,7 @@
                     >
                         <img
                             class="w-48 mr-6 mb-6"
-                            src="{{asset('images/no-image.png')}}"
+                            src="{{$listing->logo ? asset('storage/'.$listing->logo) : asset('/images/no-image.png')}}"
                             alt=""
                         />
 
@@ -47,6 +47,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-4 p-2 flex space-x-6">
+                <a href="/listings/{{$listing->id}}/edit">
+                    <i class="fa-solid fa-pencil"></i> Edit
+                </a>
+
+                <form action="/listings/{{$listing->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-red-500">
+                        <i class="fa-solid fa-trash"></i>Delete
+                    </button>
+                </form>
             </div>
 
         </x-layout>
